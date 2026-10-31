@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webzz Coaching Center Ajnala | IELTS, PTE & Computer Institute</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --secondary: #f97316;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 0.5rem 2rem;
+        }
+
+        .top-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar span {
+            margin-right: 1.5rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .btn-nav {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.92)), 
+                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+            color: #cbd5e1;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        /* Result Verification Section */
+        .result-section {
+            background: linear-gradient(135deg, #eff6ff, #f8fafc);
+            border: 2px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .search-group input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-group input:focus {
+            border-color: var(--accent);
+        }
+
+        .search-group button {
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-group button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        #resultDisplay {
+            margin-top: 1.5rem;
+            display: none;
+            padding: 1.2rem;
+            border-radius: 6px;
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .result-card h4 {
+            color: #166534;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1rem;
+            font-size: 0.95rem;
+            margin-top: 0.8rem;
+        }
+
+        .error-msg {
+            background-color: #fef2f2 !important;
+            border-color: #fecaca !important;
+            color: #991b1b;
+        }
+
+        /* Feature Grid / Modules */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Courses Section */
+        .courses-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-box {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .course-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.2rem 1.5rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .course-body {
+            padding: 1.5rem;
+        }
+
+        .course-body ul {
+            list-style: none;
+        }
+
+        .course-body li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--bg-light);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .course-body li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem 1.5rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary);
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p, .footer-col ul {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid var(--primary-light);
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .top-bar { display: none; }
+            nav ul { display: none; }
+            .search-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div>
+                <span>📍 Opposite Bus Stand, Ajnala, Punjab</span>
+                <span>📞 +91 9855151521, 9815151521 </span>
+            </div>
+            <div>
+                <span>Mon - Sat: 8:00 AM - 5:00 PM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Webzz <span>Coaching Center</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#results">Check Result</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#modules">IELTS & PTE</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            <a href="#results" class="btn-nav">Student Portal</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Excellence in Language & Computer Education</h1>
+        <p>Empowering students in Ajnala with world-class training in IELTS, PTE, Spoken English, and Professional Computer Applications.</p>
+        <div class="hero-btns">
+            <a href="#results" class="btn-primary">Check Roll No Result</a>
+            <a href="#courses" class="btn-outline">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="container">
+
+        <!-- Student Result Verification Section -->
+        <section class="result-section" id="results">
+            <div class="section-header">
+                <h2>Computer Student Result Portal</h2>
+                <p>Enter your assigned roll number to verify your examination status and scores instantly.</p>
+            </div>
+            
+            <div class="result-box">
+                <div class="search-group">
+                    <input type="text" id="rollNumberInput" placeholder="Enter Roll No (e.g., WBZ-101)..." />
+                    <button onclick="checkResult()">Search Result</button>
+                </div>
+                
+                <div id="resultDisplay">
+                    <!-- Dynamic result content appears here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- IELTS Test Structure Modules -->
+        <section id="modules">
+            <div class="section-header">
+                <h2>IELTS Test Modules</h2>
+                <p>Comprehensive training modules structured for your success.</p>
+            </div>
+            <div class="grid-4">
+                <div class="card">
+                    <h3>IELTS Listening</h3>
+                    <p>30 minutes test duration featuring 40 questions across 4 distinct sections to sharpen your audio comprehension.</p>
+                </div>
+                <div class="card">
+                    <h3>IELTS Reading</h3>
+                    <p>60 minutes comprehensive test with 3 passages and 40 questions focusing on advanced skimming and scanning techniques.</p>
+                </div>
+                <div class="card">
+                    <h3>IELTS Writing</h3>
+                    <p>Master Task 1 and Task 2 with structured templates, precise vocabulary selection, and grammatical coherence.</p>
+                </div>
+                <div class="card">
+                    <h3>IELTS Speaking</h3>
+                    <p>Face-to-face mock interview practice sessions to boost fluency, pronunciation, and lexical resource confidence.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Offerings -->
+        <section id="courses">
+            <div class="section-header">
+                <h2>Our Specialized Programs</h2>
+                <p>Choose the right career path tailored to your professional and academic goals.</p>
+            </div>
+            
+            <div class="courses-wrapper">
+                <div class="course-box">
+                    <div class="course-header">Language Proficiency</div>
+                    <div class="course-body">
+                        <ul>
+                            <li>IELTS Academic & General Training</li>
+                            <li>PTE Academic Coaching & Mock Tests</li>
+                            <li>Spoken English & Personality Development</li>
+                            <li>Grammar & Vocabulary Enhancement</li>
+                            <li>Interview Preparation & Soft Skills</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="course-box">
+                    <div class="course-header">Computer Applications</div>
+                    <div class="course-body">
+                        <ul>
+                            <li>Basic Computer Literacy & Typing</li>
+                            <li>Advanced Microsoft Excel & Formulas</li>
+                            <li>Database Management & Access</li>
+                            <li>Word Processing & Documentation</li>
+                            <li>Web Development Basics (HTML & CSS)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Webzz Coaching Center</h4>
+                <p>Your trusted educational partner in Ajnala for quality language coaching, computer literacy, and verified skill certification.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#results">Result Portal</a></li>
+                    <li><a href="#modules">IELTS Training</a></li>
+                    <li><a href="#courses">Computer Courses</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Programs Offered</h4>
+                <ul>
+                    <li><a href="#courses">IELTS & PTE Coaching</a></li>
+                    <li><a href="#courses">Spoken English Batches</a></li>
+                    <li><a href="#courses">Computer Application Training</a></li>
+                    <li><a href="#courses">Data & Spreadsheet Management</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p>📍Opposite Bus Stand , Ajnala, Punjab</p>
+                <p style="margin-top: 0.5rem;">📞 Phone: +91 9855151521, 9815151521 </p>
+                <p style="margin-top: 0.5rem;">✉️ Email: webzzcoachingcenter@gmail.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Webzz Coaching Center Ajnala. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Roll Number Result Checker -->
+    <script>
+        // Sample database of computer student results
+        const studentDatabase = {
+            "WBZ-101": { name: "Aarav Sharma", course: "Advanced Computer Applications", score: "88%", grade: "A+", status: "Pass" },
+            "WBZ-102": { name: "Simran Kaur", course: "Microsoft Excel & Database", score: "92%", grade: "A+", status: "Pass" },
+            "WBZ-103": { name: "Rahul Verma", course: "Basic Computer Literacy", score: "78%", grade: "B+", status: "Pass" },
+            "WBZ-104": { name: "Gurpreet Singh", course: "Web Development (HTML/CSS)", score: "85%", grade: "A", status: "Pass" },
+            "WBZ-105": { name: "Priya Madaan", course: "Advanced Computer Applications", score: "95%", grade: "A+", status: "Pass" }
+        };
+
+        function checkResult() {
+            const inputVal = document.getElementById('rollNumberInput').value.trim().toUpperCase();
+            const displayBox = document.getElementById('resultDisplay');
+            
+            if (!inputVal) {
+                displayBox.style.display = 'block';
+                displayBox.className = "error-msg";
+                displayBox.innerHTML = "<strong>Error:</strong> Please enter a valid roll number.";
+                return;
+            }
+
+            const student = studentDatabase[inputVal];
+
+            if (student) {
+                displayBox.style.display = 'block';
+                displayBox.className = "";
+                displayBox.style.backgroundColor = "#f0fdf4";
+                displayBox.style.border = "1px solid #bbf7d0";
+                displayBox.innerHTML = `
+                    <div class="result-card">
+                        <h4>Result Found Successfully!</h4>
+                        <div class="result-grid">
+                            <div><strong>Student Name:</strong> ${student.name}</div>
+                            <div><strong>Roll Number:</strong> ${inputVal}</div>
+                            <div><strong>Course:</strong> ${student.course}</div>
+                            <div><strong>Percentage:</strong> ${student.score}</div>
+                            <div><strong>Grade:</strong> ${student.grade}</div>
+                            <div><strong>Status:</strong> <span style="color: #166534; font-weight: bold;">${student.status}</span></div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                displayBox.style.display = 'block';
+                displayBox.className = "error-msg";
+                displayBox.innerHTML = `<strong>Not Found:</strong> No computer student record matches Roll No "${inputVal}". Please check your roll number or contact the center office.`;
+            }
+        }
+    </script>
+</body>
+</html>
