@@ -651,5 +651,38 @@
             }
         }
     </script>
+    <script>
+async function checkResult() {
+  const roll = document.getElementById('rollInput').value.trim();
+  const display = document.getElementById('resultDisplay');
+  
+  if (!roll) {
+    display.innerHTML = "<p style='color:red; margin-top:10px;'>Please enter a roll number.</p>";
+    return;
+  }
+  
+  try {
+    const response = await fetch('results.json');
+    const data = await response.json();
+    const student = data.find(item => item.rollNo.toLowerCase() === roll.toLowerCase());
+    
+    if (student) {
+      display.innerHTML = `
+        <div style="border:1px solid #0056b3; padding:15px; margin-top:15px; border-radius:8px; background-color:#f9f9f9; text-align:left;">
+          <h3 style="margin-top:0; color:#0056b3;">${student.name}</h3>
+          <p><strong>Course:</strong> ${student.course}</p>
+          <p><strong>Listening:</strong> ${student.Listening} | <strong>Reading:</strong> ${student.Reading}</p>
+          <p><strong>Writing:</strong> ${student.Writing} | <strong>Speaking:</strong> ${student.Speaking}</p>
+          <p style="font-size:1.1em; color:green;"><strong>Overall Band:</strong> ${student.overall}</p>
+          <p><strong>Status:</strong> ${student.status}</p>
+        </div>`;
+    } else {
+      display.innerHTML = "<p style='color:red; margin-top:10px;'>No record found for this Roll Number.</p>";
+    }
+  } catch (err) {
+    display.innerHTML = "<p style='color:red; margin-top:10px;'>Error fetching results data.</p>";
+  }
+}
+</script>
 </body>
 </html>
