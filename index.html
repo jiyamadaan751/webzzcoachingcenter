@@ -589,7 +589,28 @@
     </footer>
 
     <!-- JavaScript for Roll Number Result Checker -->
-        <script> 
+       <script>
+  const SHEET_CSV_URL = "PASTE_YOUR_CSV_LINK_HERE";
+
+  function parseCSVRow(row) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < row.length; i++) {
+      const char = row[i];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim());
+    return result;
+  }
+
   async function checkResult() {
     const inputVal = document.getElementById('rollNumberInput').value.trim().toUpperCase();
     const displayBox = document.getElementById('resultDisplay');
@@ -602,9 +623,29 @@
     }
 
     try {
-      const response = await fetch('./results.json?t=' + new Date().getTime());
-      const students = await response.json();
-      const student = students.find(s => s.rollNo.trim().toUpperCase() === inputVal);
+      const response = await fetch(SHEET_CSV_URL + '&t=' + new Date().getTime());
+      const csvText = await response.text();
+      const lines = csvText.trim().split(/\r?\n/);
+
+      let student = null;
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const cols = parseCSVRow(lines[i]);
+        const rollNo = (cols || "").toUpperCase();
+
+        if (rollNo === inputVal) {
+          student = {
+            rollNo: cols || "",
+            name: cols || "",
+            fatherName: cols || "",
+            course: cols || "",
+            marks: cols || "",
+            grade: cols || "",
+            status: cols || ""
+          };
+          break;
+        }
+      }
 
       if (student) {
         displayBox.style.display = "block";
@@ -616,9 +657,10 @@
             <h4>Result Found Successfully</h4>
             <div class="result-grid">
               <div><strong>Student Name:</strong> ${student.name}</div>
+              <div><strong>Father's Name:</strong> ${student.fatherName}</div>
               <div><strong>Roll Number:</strong> ${student.rollNo}</div>
               <div><strong>Course:</strong> ${student.course}</div>
-              <div><strong>Percentage:</strong> ${student.marksObtained}</div>
+              <div><strong>Marks:</strong> ${student.marks}</div>
               <div><strong>Grade:</strong> ${student.grade}</div>
               <div><strong>Status:</strong> <span style="color: #166534; font-weight: bold;">${student.status}</span></div>
             </div>
@@ -634,7 +676,7 @@
     } catch (error) {
       displayBox.style.display = "block";
       displayBox.className = "error-msg";
-      displayBox.innerHTML = "<strong>Error:</strong> Unable to load results right now. Please try again.";
+      displayBox.innerHTML = "<strong>Error:</strong> Unable to load results from Google Sheets right now. Please try again.";
     }
   }
 
