@@ -1,18 +1,7 @@
 [
   {
     "rollNo": "WBZ-101",
-    "name": "Amanpreet Kaur",
-    "course": "IELTS Academic",
-    "listening": "8.0",
-    "reading": "7.5",
-    "writing": "7.0",
-    "speaking": "7.5",
-    "overall": "7.5",
-    "status": "Pass"
-  },
-  {
-    "rollNo": "WBZ-102",
-    "name": "Rahul Sharma",
+    "name": "Sahil Madaan",
     "course": "Advanced Excel & Computer Applications",
     "marksObtained": "92%",
     "grade": "A+",
