@@ -590,85 +590,60 @@
 
     <!-- JavaScript for Roll Number Result Checker -->
     <script>
-        // Sample database of computer student results
-        const studentDatabase = {
-            "WBZ-101": { name: "Aarav Sharma", course: "Advanced Computer Applications", score: "88%", grade: "A+", status: "Pass" },
-            "WBZ-102": { name: "Simran Kaur", course: "Microsoft Excel & Database", score: "92%", grade: "A+", status: "Pass" },
-            "WBZ-103": { name: "Rahul Verma", course: "Basic Computer Literacy", score: "78%", grade: "B+", status: "Pass" },
-            "WBZ-104": { name: "Gurpreet Singh", course: "Web Development (HTML/CSS)", score: "85%", grade: "A", status: "Pass" },
-            "WBZ-105": { name: "Priya Madaan", course: "Advanced Computer Applications", score: "95%", grade: "A+", status: "Pass" }
-        };
+        <script>
+  async function checkResult() {
+    const inputVal = document.getElementById('rollNumberInput').value.trim().toUpperCase();
+    const displayBox = document.getElementById('resultDisplay');
 
-        function checkResult() {
-            const inputVal = document.getElementById('rollNumberInput').value.trim().toUpperCase();
-            const displayBox = document.getElementById('resultDisplay');
-
-            if (!inputVal) {
-                displayBox.style.display = 'block';
-                displayBox.className = "error-msg";
-                displayBox.innerHTML = "<strong>Error:</strong> Please enter a valid roll number.";
-                return;
-            }
-
-            const student = studentDatabase[inputVal];
-
-            if (student) {
-                displayBox.style.display = 'block';
-                displayBox.className = "";
-                displayBox.style.backgroundColor = "#f0fdf4";
-                displayBox.style.border = "1px solid #bbf7d0";
-                displayBox.innerHTML = `
-                    <div class="result-card">
-                        <h4>Result Found Successfully!</h4>
-                        <div class="result-grid">
-                            <div><strong>Student Name:</strong> ${student.name}</div>
-                            <div><strong>Roll Number:</strong> ${inputVal}</div>
-                            <div><strong>Course:</strong> ${student.course}</div>
-                            <div><strong>Percentage:</strong> ${student.score}</div>
-                            <div><strong>Grade:</strong> ${student.grade}</div>
-                            <div><strong>Status:</strong> <span style="color: #166534; font-weight: bold;">${student.status}</span></div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                displayBox.style.display = 'block';
-                displayBox.className = "error-msg";
-                displayBox.innerHTML = `<strong>Not Found:</strong> No computer student record matches Roll No "${inputVal}". Please check your roll number or contact the center office.`;
-            }
-        }
-    </script>
-    <script>
-async function checkResult() {
-  const roll = document.getElementById('rollInput').value.trim();
-  const display = document.getElementById('resultDisplay');
-  
-  if (!roll) {
-    display.innerHTML = "<p style='color:red; margin-top:10px;'>Please enter a roll number.</p>";
-    return;
-  }
-  
-  try {
-    const response = await fetch('results.json');
-    const data = await response.json();
-    const student = data.find(item => item.rollNo.toLowerCase() === roll.toLowerCase());
-    
-    if (student) {
-      display.innerHTML = `
-        <div style="border:1px solid #0056b3; padding:15px; margin-top:15px; border-radius:8px; background-color:#f9f9f9; text-align:left;">
-          <h3 style="margin-top:0; color:#0056b3;">${student.name}</h3>
-          <p><strong>Course:</strong> ${student.course}</p>
-          <p><strong>Listening:</strong> ${student.Listening} | <strong>Reading:</strong> ${student.Reading}</p>
-          <p><strong>Writing:</strong> ${student.Writing} | <strong>Speaking:</strong> ${student.Speaking}</p>
-          <p style="font-size:1.1em; color:green;"><strong>Overall Band:</strong> ${student.overall}</p>
-          <p><strong>Status:</strong> ${student.status}</p>
-        </div>`;
-    } else {
-      display.innerHTML = "<p style='color:red; margin-top:10px;'>No record found for this Roll Number.</p>";
+    if (!inputVal) {
+      displayBox.style.display = "block";
+      displayBox.className = "error-msg";
+      displayBox.innerHTML = "<strong>Error:</strong> Please enter a valid roll number.";
+      return;
     }
-  } catch (err) {
-    display.innerHTML = "<p style='color:red; margin-top:10px;'>Error fetching results data.</p>";
+
+    try {
+      const response = await fetch('./results.json?t=' + new Date().getTime());
+      const students = await response.json();
+      const student = students.find(s => s.rollNo.trim().toUpperCase() === inputVal);
+
+      if (student) {
+        displayBox.style.display = "block";
+        displayBox.className = "";
+        displayBox.style.backgroundColor = "#f0fdf4";
+        displayBox.style.border = "1px solid #4ade80";
+        displayBox.innerHTML = `
+          <div class="result-card">
+            <h4>Result Found Successfully</h4>
+            <div class="result-grid">
+              <div><strong>Student Name:</strong> ${student.name}</div>
+              <div><strong>Roll Number:</strong> ${student.rollNo}</div>
+              <div><strong>Course:</strong> ${student.course}</div>
+              <div><strong>Percentage:</strong> ${student.marksObtained}</div>
+              <div><strong>Grade:</strong> ${student.grade}</div>
+              <div><strong>Status:</strong> <span style="color: #166534; font-weight: bold;">${student.status}</span></div>
+            </div>
+          </div>
+        `;
+      } else {
+        displayBox.style.display = "block";
+        displayBox.className = "error-msg";
+        displayBox.style.backgroundColor = "";
+        displayBox.style.border = "";
+        displayBox.innerHTML = "<strong>Not Found:</strong> No result found for Roll Number " + inputVal + ".";
+      }
+    } catch (error) {
+      displayBox.style.display = "block";
+      displayBox.className = "error-msg";
+      displayBox.innerHTML = "<strong>Error:</strong> Unable to load results right now. Please try again.";
+    }
   }
-}
+
+  document.getElementById('rollNumberInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      checkResult();
+    }
+  });
 </script>
 </body>
 </html>
