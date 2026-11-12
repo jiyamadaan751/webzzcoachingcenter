@@ -591,13 +591,12 @@
     <!-- JavaScript for Roll Number Result Checker -->
        <script>
   const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0y3jom5deQxUhS0PW68Pr0tOxNGYEtBjamQXLxOGDugo8g1PGwg6Qo3rNFhuvqOtPW48f7GZUz-VS/pub?gid=0&single=true&output=csv";
-
-  function parseCSVRow(row) {
+function parseCSVRow(row) {
     const result = [];
     let current = '';
     let inQuotes = false;
     for (let i = 0; i < row.length; i++) {
-      const char = row[i];
+      const char = row.charAt(i);
       if (char === '"') {
         inQuotes = !inQuotes;
       } else if (char === ',' && !inQuotes) {
@@ -629,19 +628,19 @@
 
       let student = null;
       for (let i = 1; i < lines.length; i++) {
-        if (!lines[i].trim()) continue;
-        const cols = parseCSVRow(lines[i]);
-        const rollNo = (cols || "").toUpperCase();
+        if (!lines.at(i).trim()) continue;
+        const cols = parseCSVRow(lines.at(i));
+        const rollNo = (cols.at(0) || "").toUpperCase();
 
         if (rollNo === inputVal) {
           student = {
-            rollNo: cols || "",
-            name: cols || "",
-            fatherName: cols || "",
-            course: cols || "",
-            marks: cols || "",
-            grade: cols || "",
-            status: cols || ""
+            rollNo: cols.at(0) || "",
+            name: cols.at(1) || "",
+            fatherName: cols.at(2) || "",
+            course: cols.at(3) || "",
+            marks: cols.at(4) || "",
+            grade: cols.at(5) || "",
+            status: cols.at(6) || ""
           };
           break;
         }
